@@ -14,16 +14,31 @@ pip install philiprehberger-randstr
 
 ## Usage
 
+### Random Strings
+
 ```python
-from philiprehberger_randstr import randstr, token, password, hex_str, uuid_short
+from philiprehberger_randstr import randstr
 
 randstr(16)                       # "aBx4kLm9pQrS2tUv"
 randstr(8, charset="lowercase")   # "abcdefgh"
+```
 
-token(32)                         # URL-safe base64 token
-password(16)                      # "aB3$kLm!9pQr#2tU"
-hex_str(16)                       # "a1b2c3d4e5f6a7b8"
-uuid_short()                      # "7f3a8b2c"
+### Tokens and Passwords
+
+```python
+from philiprehberger_randstr import token, password
+
+token(32)       # URL-safe base64 token
+password(16)    # "aB3$kLm!9pQr#2tU"
+```
+
+### Hex and Short IDs
+
+```python
+from philiprehberger_randstr import hex_str, uuid_short
+
+hex_str(16)     # "a1b2c3d4e5f6a7b8"
+uuid_short()    # "7f3a8b2c"
 ```
 
 All generators use the `secrets` module for cryptographic security.

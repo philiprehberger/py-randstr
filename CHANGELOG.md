@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.6
+
+- Split Usage section into subsections per function category
+
 ## 0.1.4
 
 - Add Development section to README
