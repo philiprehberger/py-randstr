@@ -36,6 +36,14 @@ All generators use the `secrets` module for cryptographic security.
 - `hex_str(length=16)` — Random hex string
 - `uuid_short(length=8)` — Short UUID-like hex ID
 
+
+## Development
+
+```bash
+pip install -e .
+python -m pytest tests/ -v
+```
+
 ## License
 
 MIT
