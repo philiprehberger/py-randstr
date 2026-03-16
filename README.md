@@ -1,5 +1,9 @@
 # philiprehberger-randstr
 
+[![Tests](https://github.com/philiprehberger/py-randstr/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/py-randstr/actions/workflows/publish.yml)
+[![PyPI version](https://img.shields.io/pypi/v/philiprehberger-randstr.svg)](https://pypi.org/project/philiprehberger-randstr/)
+[![License](https://img.shields.io/github/license/philiprehberger/py-randstr)](LICENSE)
+
 Generate random readable strings for various purposes.
 
 ## Installation
