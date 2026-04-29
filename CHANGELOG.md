@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 (2026-04-28)
+
+- Add `readable_id(length=8)` — random ID drawn from a visually-unambiguous alphabet (excludes `0`, `1`, `O`, `o`, `I`, `l`)
+- Sync `pyproject.toml` description to end with a period (matches README one-liner)
+- Convert API section from bullet list to standardized `Function / Class` table
+
 ## 0.1.8 (2026-03-31)
 
 - Standardize README to 3-badge format with emoji Support section

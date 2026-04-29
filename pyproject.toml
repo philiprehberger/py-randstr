@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "philiprehberger-randstr"
-version = "0.1.8"
-description = "Generate random readable strings for various purposes"
+version = "0.2.0"
+description = "Generate random readable strings for various purposes."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"

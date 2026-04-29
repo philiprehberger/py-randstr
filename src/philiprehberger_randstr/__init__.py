@@ -12,7 +12,12 @@ __all__ = [
     "password",
     "hex_str",
     "uuid_short",
+    "readable_id",
 ]
+
+# Visually unambiguous alphabet — excludes 0, 1, O, o, I, l (the characters
+# most commonly mistaken for one another in monospace fonts).
+_READABLE_CHARS = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz"
 
 _CHARSETS: dict[str, str] = {
     "alphanumeric": string.ascii_letters + string.digits,
@@ -121,3 +126,19 @@ def uuid_short(length: int = 8) -> str:
         Lowercase hex string.
     """
     return hex_str(length)
+
+
+def readable_id(length: int = 8) -> str:
+    """Generate a random ID using a visually unambiguous alphabet.
+
+    Excludes characters commonly mistaken for each other in monospace fonts
+    (``0``, ``1``, ``O``, ``o``, ``I``, ``l``). Useful for vouchers, short
+    references, or any human-typed code where mis-reads matter.
+
+    Args:
+        length: Length of the ID to generate.
+
+    Returns:
+        Random ID string drawn from the readable alphabet.
+    """
+    return "".join(secrets.choice(_READABLE_CHARS) for _ in range(length))

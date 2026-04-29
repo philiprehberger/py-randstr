@@ -1,5 +1,12 @@
 import string
-from philiprehberger_randstr import randstr, token, password, hex_str, uuid_short
+from philiprehberger_randstr import (
+    hex_str,
+    password,
+    randstr,
+    readable_id,
+    token,
+    uuid_short,
+)
 
 
 def test_randstr_default_length():
@@ -79,3 +86,24 @@ def test_uuid_short_custom():
 def test_uniqueness():
     results = {randstr(16) for _ in range(100)}
     assert len(results) == 100  # all unique
+
+
+def test_readable_id_default_length():
+    assert len(readable_id()) == 8
+
+
+def test_readable_id_custom_length():
+    assert len(readable_id(20)) == 20
+
+
+def test_readable_id_excludes_confusable_chars():
+    # Generate enough output to make accidental absence statistically improbable.
+    sample = readable_id(2000)
+    forbidden = set("01OoIl")
+    assert not (set(sample) & forbidden)
+
+
+def test_readable_id_uses_only_allowed_alphabet():
+    sample = readable_id(2000)
+    allowed = set("23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz")
+    assert set(sample) <= allowed

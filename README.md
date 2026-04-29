@@ -41,15 +41,28 @@ hex_str(16)     # "a1b2c3d4e5f6a7b8"
 uuid_short()    # "7f3a8b2c"
 ```
 
+### Readable IDs
+
+`readable_id` excludes visually-confusable characters (`0`, `1`, `O`, `o`, `I`, `l`) — useful for vouchers, short references, and any human-typed code.
+
+```python
+from philiprehberger_randstr import readable_id
+
+readable_id(8)   # e.g. "K7P4MNXR" — never contains 0/1/O/o/I/l
+```
+
 All generators use the `secrets` module for cryptographic security.
 
 ## API
 
-- `randstr(length=16, charset="alphanumeric")` — Random string from charset
-- `token(length=32)` — URL-safe base64 token
-- `password(length=16, symbols, min_symbols, min_digits, min_upper)` — Strong password
-- `hex_str(length=16)` — Random hex string
-- `uuid_short(length=8)` — Short UUID-like hex ID
+| Function / Class | Description |
+|------------------|-------------|
+| `randstr(length=16, charset="alphanumeric")` | Random string from a built-in or custom charset |
+| `token(length=32)` | URL-safe base64-encoded token |
+| `password(length=16, symbols, min_symbols, min_digits, min_upper)` | Strong password with guaranteed character-class diversity |
+| `hex_str(length=16)` | Random lowercase hex string |
+| `uuid_short(length=8)` | Short UUID-like hex ID |
+| `readable_id(length=8)` | Random ID drawn from a visually-unambiguous alphabet |
 
 ## Development
 
