@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0 (2026-05-30)
+
+- Add `pin()` for numeric PIN generation via `secrets`
+- Add `slug()` for short URL-safe slugs from the visually-unambiguous charset
+
 ## 0.2.0 (2026-04-28)
 
 - Add `readable_id(length=8)` — random ID drawn from a visually-unambiguous alphabet (excludes `0`, `1`, `O`, `o`, `I`, `l`)

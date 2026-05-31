@@ -51,6 +51,26 @@ from philiprehberger_randstr import readable_id
 readable_id(8)   # e.g. "K7P4MNXR" — never contains 0/1/O/o/I/l
 ```
 
+### Numeric PINs
+
+```python
+from philiprehberger_randstr import pin
+
+pin()       # e.g. "478392"  — 6-digit default
+pin(4)      # e.g. "2057"
+```
+
+### URL-safe slugs
+
+`slug` draws from the lowercase visually-unambiguous alphanumeric charset (excludes `0`, `1`, `l`, `o`) — ideal for short shareable URLs.
+
+```python
+from philiprehberger_randstr import slug
+
+slug()      # e.g. "k7p4mnxr"
+slug(12)    # e.g. "h3jq8mt2nrpw"
+```
+
 All generators use the `secrets` module for cryptographic security.
 
 ## API
@@ -63,6 +83,8 @@ All generators use the `secrets` module for cryptographic security.
 | `hex_str(length=16)` | Random lowercase hex string |
 | `uuid_short(length=8)` | Short UUID-like hex ID |
 | `readable_id(length=8)` | Random ID drawn from a visually-unambiguous alphabet |
+| `pin(length=6)` | Cryptographically-strong numeric PIN of digits |
+| `slug(length=8)` | Short URL-safe slug from the lowercase visually-unambiguous charset |
 
 ## Development
 

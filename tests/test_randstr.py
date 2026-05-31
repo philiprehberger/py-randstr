@@ -1,9 +1,14 @@
 import string
+
+import pytest
+
 from philiprehberger_randstr import (
     hex_str,
     password,
+    pin,
     randstr,
     readable_id,
+    slug,
     token,
     uuid_short,
 )
@@ -107,3 +112,49 @@ def test_readable_id_uses_only_allowed_alphabet():
     sample = readable_id(2000)
     allowed = set("23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz")
     assert set(sample) <= allowed
+
+
+def test_pin_default_length():
+    result = pin()
+    assert len(result) == 6
+    assert all(c in "0123456789" for c in result)
+
+
+def test_pin_custom_length():
+    result = pin(10)
+    assert len(result) == 10
+    assert all(c in "0123456789" for c in result)
+
+
+def test_pin_zero_length_raises():
+    with pytest.raises(ValueError):
+        pin(0)
+
+
+def test_pin_uniqueness():
+    results = {pin() for _ in range(5)}
+    # Collision across 5 six-digit PINs is astronomically unlikely.
+    assert len(results) > 1
+
+
+def test_slug_default_length():
+    result = slug()
+    assert len(result) == 8
+
+
+def test_slug_uses_only_allowed_alphabet():
+    sample = slug(2000)
+    allowed = set("23456789abcdefghijkmnpqrstuvwxyz")
+    forbidden = set("01loOI") | set(string.ascii_uppercase)
+    assert set(sample) <= allowed
+    assert not (set(sample) & forbidden)
+
+
+def test_slug_zero_length_raises():
+    with pytest.raises(ValueError):
+        slug(0)
+
+
+def test_slug_uniqueness():
+    results = {slug() for _ in range(5)}
+    assert len(results) > 1

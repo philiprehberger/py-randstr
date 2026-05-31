@@ -13,11 +13,17 @@ __all__ = [
     "hex_str",
     "uuid_short",
     "readable_id",
+    "pin",
+    "slug",
 ]
 
 # Visually unambiguous alphabet — excludes 0, 1, O, o, I, l (the characters
 # most commonly mistaken for one another in monospace fonts).
 _READABLE_CHARS = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz"
+
+# Lowercase-only variant of the visually unambiguous alphabet — excludes
+# 0, 1, l, o. Used by ``slug()`` for short shareable URLs.
+_SLUG_CHARS = "23456789abcdefghijkmnpqrstuvwxyz"
 
 _CHARSETS: dict[str, str] = {
     "alphanumeric": string.ascii_letters + string.digits,
@@ -142,3 +148,36 @@ def readable_id(length: int = 8) -> str:
         Random ID string drawn from the readable alphabet.
     """
     return "".join(secrets.choice(_READABLE_CHARS) for _ in range(length))
+
+
+def pin(length: int = 6) -> str:
+    """Generate a cryptographically-strong numeric PIN.
+
+    Args:
+        length: PIN length. Must be >= 1.
+
+    Returns:
+        String of *length* digits ("0"-"9").
+    """
+    if length < 1:
+        msg = "Length must be >= 1"
+        raise ValueError(msg)
+    return "".join(secrets.choice("0123456789") for _ in range(length))
+
+
+def slug(length: int = 8) -> str:
+    """Generate a URL-safe slug from the visually-unambiguous lowercase alphanumeric charset.
+
+    Excludes ambiguous chars (0/O/o, 1/l/I). Suitable for short
+    shareable URLs.
+
+    Args:
+        length: Slug length. Must be >= 1.
+
+    Returns:
+        Random slug string drawn from the lowercase visually-unambiguous alphabet.
+    """
+    if length < 1:
+        msg = "Length must be >= 1"
+        raise ValueError(msg)
+    return "".join(secrets.choice(_SLUG_CHARS) for _ in range(length))
